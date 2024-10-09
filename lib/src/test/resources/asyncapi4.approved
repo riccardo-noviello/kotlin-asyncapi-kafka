@@ -1,0 +1,41 @@
+asyncapi: 3.0.0
+info:
+  title: Kafka Topics
+  version: 1.0.0
+channels:
+  example_topic1:
+    description: Channel for MapTopic events.
+    address: example_topic1
+    messages:
+      MapTopic:
+        name: MapTopic
+        payload:
+          $ref: '#/components/schemas/MapTopic'
+operations:
+  consumeMapTopic:
+    action: receive
+    channel:
+      $ref: '#/channels/example_topic1'
+components:
+  schemas:
+    Contact:
+      type: object
+      properties:
+        deleted:
+          type: boolean
+        lastname:
+          type: string
+        name:
+          type: string
+    MapTopic:
+      type: object
+      properties:
+        contacts:
+          type: object
+          properties:
+            key:
+              type: string
+            value:
+              $ref: '#/components/schemas/Contact'
+        orgCode:
+          type: string

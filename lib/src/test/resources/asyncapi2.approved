@@ -1,0 +1,58 @@
+asyncapi: 3.0.0
+info:
+  title: Kafka Topics
+  version: 1.0.0
+channels:
+  example_topic1:
+    description: Channel for ExampleTopic1 events.
+    address: example_topic1
+    messages:
+      ExampleTopic1:
+        name: ExampleTopic1
+        payload:
+          $ref: '#/components/schemas/ExampleTopic1'
+  example_topic2:
+    description: Channel for ExampleTopic2 events.
+    address: example_topic2
+    messages:
+      ExampleTopic2:
+        name: ExampleTopic2
+        payload:
+          $ref: '#/components/schemas/ExampleTopic2'
+operations:
+  produceExampleTopic1:
+    action: send
+    channel:
+      $ref: '#/channels/example_topic1'
+  produceExampleTopic2:
+    action: send
+    channel:
+      $ref: '#/channels/example_topic2'
+components:
+  schemas:
+    ExampleTopic1:
+      type: object
+      properties:
+        age:
+          type: integer
+        amount:
+          type: number
+        birthDate:
+          type:
+          - 'null'
+          - string
+          format: date
+        code:
+          type: integer
+        name:
+          type: string
+    ExampleTopic2:
+      type: object
+      properties:
+        active:
+          type: boolean
+        description:
+          type: string
+        id:
+          type: string
+          format: uuid
